@@ -38,7 +38,7 @@ public class SQLiteDatabase
     public SQLiteDatabase()
     {
         String dataSource = HttpContext.Current.Server.MapPath(@"~\App_Data\idlink_member_data.sq3");
-        dbConnection = "Data Source=" + dataSource + "; Version=3;Password=\"325Cypress\";";
+        dbConnection = "Data Source=" + dataSource + "; Version=3;Password=\"XXXXXXXX\";";
     }
 
     /// <summary>
