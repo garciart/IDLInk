@@ -1,0 +1,139 @@
+﻿<!--<p><asp:FileUpLoad ID="photo_upload" runat="server" /></p>-->
+
+    <!--<link rel="stylesheet" href="js/SignaturePad/assets/jquery.signaturepad.css"/>-->
+	<a href="#clear">Reset Signature</a>
+
+	    <script type="text/javascript">
+        $(function () {
+            $("#dob").datepicker({
+                changeMonth: true,
+                changeYear: true,
+                yearRange: 'c-100:c'
+            });
+        });
+    </script>
+
+	 SelectedValue='<%# Bind("height") %>'
+
+	 <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("dob", "{0:d}") %>'></asp:TextBox>
+
+<!-- <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %> -->
+    <!--
+    <ajaxToolkit:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
+    </ajaxToolkit:ToolkitScriptManager>
+    -->
+
+    <memberid>1</memberid>
+    <lname>DOE</lname>
+    <fname>JOHN</fname>
+    <mi />
+    <dob>08/28/1979</dob>
+    <gender>M</gender>
+    <height>72</height>
+    <eye_color>BRO</eye_color>
+    <blood_type>OPOS</blood_type>
+    <member_since>2000</member_since>
+    <signature_path>C:\inetpub\wwwroot\idlink\images\doe_john_2000_sign.png</signature_path>
+    <pdf417_path>C:\inetpub\wwwroot\idlink\images\doe_john_2000_code.png</pdf417_path>
+    <photo_path>C:\inetpub\wwwroot\idlink\images\doe_john_2000_photo.png</photo_path>
+
+C:\inetpub\wwwroot\idlink\images\garcia_robert_2011_code.png
+C:\inetpub\wwwroot\idlink\images\garcia_robert_2011_sign.png
+C:\inetpub\wwwroot\idlink\images\garcia_robert_2011_photo.png
+
+// using Aspose;
+            /*
+            // Use ZXing instead
+            Aspose.BarCode.BarCodeBuilder b;
+            b = new Aspose.BarCode.BarCodeBuilder();
+            b.SymbologyType = Aspose.BarCode.Symbology.Pdf417;
+            // Specify the displaying CodeText's Location, set to CodeLocation.None to hide CodeText (Data to be encoded).
+            b.CodeText = member_info;
+            b.CodeLocation = Aspose.BarCode.CodeLocation.None;
+            b.Display2DText = "";
+            b.BorderVisible = false;
+            b.Save(Server.MapPath("photos/" + user_filename + "_aspo.png"), System.Drawing.Imaging.ImageFormat.Png);
+            */
+
+			            /*
+            // DELETE AFTER BATCH UPLOAD //
+            bool success = SQLiteDatabase.AddMember(lname.Text.ToUpper(), fname.Text.ToUpper(), mi.Text.ToUpper(), dob.Value, gender.SelectedValue, height.SelectedValue, eye_color.SelectedValue, blood_type.SelectedValue, member_since.SelectedValue, signature_path, pdf417_path, photo_path);
+            if (success == true)
+            {
+                status_label.ForeColor = System.Drawing.Color.Green;
+                status_label.Text = "Member Added!";
+                status_label.Visible = true;
+                lname.Text = "";
+                fname.Text = "";
+                mi.Text = "";
+                dob.Value = "";
+                gender.SelectedValue = "M";
+                height.SelectedValue = "48";
+                eye_color.SelectedValue = "BRO";
+                blood_type.SelectedValue = "APOS";
+                member_since.SelectedValue = DateTime.Today.Year.ToString();
+            }
+            else
+            {
+                status_label.ForeColor = System.Drawing.Color.Red;
+                status_label.Text = "Invalid Entry. Please review your information.";
+                status_label.Visible = true;
+            }
+            // DELETE AFTER BATCH UPLOAD //
+            */
+
+            Bitmap result = writer.Write(member_info);
+            barcodeBitmap = new Bitmap(result);
+
+			// photo_upload.PostedFile.SaveAs(t_photo_path);
+
+                /*
+                try
+                {
+                    image.Save(Server.MapPath("photos/a_photo.png"), System.Drawing.Imaging.ImageFormat.Png);
+                    image.Dispose();
+                }
+                catch
+                {
+                    image.Dispose();
+                }
+                image = new Bitmap(System.Drawing.Image.FromFile(Server.MapPath("photos/a_photo.png")));
+                */
+
+               
+                // photo_upload.PostedFile.SaveAs(Server.MapPath("photos/" + photo_path + "_photo.png"));
+
+            string t_photo_path = Server.MapPath("photos/a_photo.png");
+
+
+        /*
+        if (photo_upload.PostedFile.ContentType == "image/png")
+        {
+            // string filename = System.IO.Path.GetFileName(photo_upload.FileName);
+            // photo_upload.SaveAs(Server.MapPath(this.UploadFolderPath) + filename);
+
+            photo_upload.SaveAs(Server.MapPath(this.UploadFolderPath) + "a_photo.png");
+
+            // string a_photo_path = Server.MapPath(this.UploadFolderPath) + "a_photo.png";
+            // string t_photo_path = Server.MapPath(this.UploadFolderPath) + "t_photo.png";
+            // photo_upload.PostedFile.SaveAs(a_photo_path);
+            // Create an image object from the uploaded file
+            // Bitmap image = new Bitmap(System.Drawing.Image.FromStream(photo_upload.PostedFile.InputStream));
+
+            // if (image.Width >= image.Height)
+            // {
+                // CropImage(image.Height, image.Height, a_photo_path, t_photo_path);
+                // ResizeImage(300, photo_path, photo_path);
+            // }
+            // else
+            // {
+                // CropImage(image.Width, image.Width, a_photo_path, t_photo_path);
+                // ResizeImage(300, photo_path, photo_path);
+            // }
+        }
+        else
+        {
+            Response.Write(@"<script language='javascript'>alert('Image must be in Portable Network Graphics (PNG) format');</script>");
+        }
+        */
+

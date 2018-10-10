@@ -1,0 +1,68 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Server" content="Microsoft-IIS/7.0" />
+    <meta http-equiv="X-Powered-By" content="ASP.NET" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>SFD ID Card Portal</title>
+    <!-- Thank you, http://thomasjbradley.ca/lab/signature-pad/#options -->
+    <!--[if lt IE 9]><script src="flashcanvas.js"></script><![endif]-->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/blitzer/jquery-ui.css"/>
+    <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <script src="js/SignaturePad/jquery.signaturepad.min.js"></script>
+    <script src="js/SignaturePad/assets/json2.min.js"></script>
+    <link rel="stylesheet" href='<%# Page.ResolveUrl("~/App_Themes/Default/StyleSheet.css") %>' />
+    <link rel='icon' href='<%# Page.ResolveUrl("~/resources/images/favicon.ico") %>' type='image/x-icon' />
+    <link rel='shortcut icon' href='<%# Page.ResolveUrl("~/resources/images/favicon.ico") %>' type='image/x-icon' />
+    <!--Thanks to http://www.dotnetcurry.com/showarticle.aspx?ID=669 for access to content page id-->
+    <script type="text/javascript">
+        $(function () {
+            $('input[id$=dob]').datepicker({
+                changeMonth: true,
+                changeYear: true,
+                yearRange: 'c-100:c'
+            });
+        });
+    </script>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server" method="post" action="" class="sigPad">
+    <ajaxToolkit:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" LoadScriptsBeforeUI="False">
+    </ajaxToolkit:ToolkitScriptManager>
+    <header>
+        <div style="font-size:smaller; text-align:right; width:100%">
+            <asp:LoginName ID="LoginName1" runat="server" FormatString="Welcome, {0}!" />&nbsp;<asp:LoginStatus ID="LoginStatus1" runat="server" />
+        </div>
+        <span style="width:15%">
+            <img src="resources/images/sfd-facebook-profile.png" alt="Welcome to the Salisbury Fire Department Identification Card Portal" title="Welcome to the Salisbury Fire Department Identification Card Portal" style="float:left; width:180px; z-index:0"/>
+        </span>
+        <h1 style="position:relative; top:70px; z-index:-1">Salisbury Fire Department Identification Card Portal</h1>
+    </header>
+    <br style="clear:both"/>
+    <nav style="display:block; float:left; width:15%">
+        <ul>
+            <li><a href="Default.aspx">Home</a></li>
+            <li><a href="new_card.aspx">New Card</a></li>
+            <li id="edit_card_link" runat="server"><a href="edit_card.aspx">Edit Card</a></li>
+            <li id="print_card_link" runat="server"><a href="print_card.aspx">Print Card</a></li>
+            <li id="manage_users_link" runat="server"><a href="AdminPages/ManageUsers.aspx">Manage Users</a></li>
+        </ul>
+    </nav>
+    <main style="display:block; float:left; width:80%">
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </main>
+    </form>
+</body>
+</html>
